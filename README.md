@@ -1,3 +1,5 @@
+# Added Support for ZC706
+
 # QNN-MO-PYNQ PIP INSTALL Package
 
 This repo contains the pip install package for Quantized Neural Network (QNN) on PYNQ using a Multi-Layer Offload (MO) architecture.
@@ -47,7 +49,7 @@ Following the step-by-step instructions:
 3.	Set the XILINX_QNN_ROOT environment variable to `clone_path/QNN-MO-PYNQ/qnn/src/`
 4.	Launch the shell script make-hw.sh with parameters the target network, target platform and mode, with the command `./make-hw.sh {network} {platform} {mode}` where:
 	- network can be W1A2 or W1A3;
-	- platform can be pynqz1-z2 or ultra96;
+	- platform can be zc706, pynqz1-z2 or ultra96;
 	- mode can be `h` to launch Vivado HLS synthesis, `b` to launch the Vivado project (needs HLS synthesis results), `a` to launch both.
 5.	The results will be visible in `clone_path/QNN-MO-PYNQ/qnn/src/network/output/` that is organized as follows:
 	- bitstream: contains the generated bitstream(s);
