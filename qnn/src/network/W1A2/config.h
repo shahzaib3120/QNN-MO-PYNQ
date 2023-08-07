@@ -30,52 +30,51 @@
 */
 
 // hardware config
-#define MAX_SIMD                64
-#define MAX_PE_CONV             32
-#define MAX_PE_FC               2
+#define MAX_SIMD 16
+#define MAX_PE_CONV 8
+#define MAX_PE_FC 2
 
 // layer types
-#define FC_LAYER                0
-#define CONV_LAYER              1
-#define CONVPOOL_LAYER          2
+#define FC_LAYER 0
+#define CONV_LAYER 1
+#define CONVPOOL_LAYER 2
 
 // conv layer dimension boundaries
-#define MAX_K                   5
-#define MAX_IFM_CH              384
-#define MAX_IFM_DIM             64
-#define MAX_OFM_CH              384
-#define MAX_OFM_DIM             64
-#define MAX_POOL_SIZE           3
-#define MAX_POOL_STRIDE         2
+#define MAX_K 5
+#define MAX_IFM_CH 384
+#define MAX_IFM_DIM 64
+#define MAX_OFM_CH 384
+#define MAX_OFM_DIM 64
+#define MAX_POOL_SIZE 3
+#define MAX_POOL_STRIDE 2
 // conv layer memory dimension boundaries
-#define MAX_CONV_WMEM           ((MAX_K*MAX_K * MAX_OFM_CH * MAX_IFM_CH) / (MAX_PE_CONV * MAX_SIMD))
-#define MAX_CONV_TMEM           (MAX_OFM_CH / MAX_PE_CONV)
-#define MAX_CONV_NUM_WORDS      (MAX_PE_CONV * (MAX_CONV_WMEM + MAX_CONV_TMEM))
+#define MAX_CONV_WMEM ((MAX_K * MAX_K * MAX_OFM_CH * MAX_IFM_CH) / (MAX_PE_CONV * MAX_SIMD))
+#define MAX_CONV_TMEM (MAX_OFM_CH / MAX_PE_CONV)
+#define MAX_CONV_NUM_WORDS (MAX_PE_CONV * (MAX_CONV_WMEM + MAX_CONV_TMEM))
 
 // fully-conn layer dimension boundaries
-#define MAX_MH                  512
-#define MAX_MW                  1024
+#define MAX_MH 512
+#define MAX_MW 1024
 
 // define popcount width >= log2(MAX_K*MAX_K*MAX_IFM_CH)
-#define POPCOUNT_WIDTH          16
+#define POPCOUNT_WIDTH 16
 
 // fully-conn layer memory dimension boundaries
-#define MAX_FC_WMEM             ((MAX_MW * MAX_MH) / (MAX_PE_FC * MAX_SIMD))
-#define MAX_FC_TMEM             (MAX_MH / MAX_PE_FC)
-#define MAX_FC_NUM_WORDS        (MAX_PE_FC * (MAX_FC_WMEM + MAX_FC_TMEM))
+#define MAX_FC_WMEM ((MAX_MW * MAX_MH) / (MAX_PE_FC * MAX_SIMD))
+#define MAX_FC_TMEM (MAX_MH / MAX_PE_FC)
+#define MAX_FC_NUM_WORDS (MAX_PE_FC * (MAX_FC_WMEM + MAX_FC_TMEM))
 
 // Memory dimensions
-#define DATAWIDTH               64
-#define CONV_MEM_BITS           MAX_CONV_NUM_WORDS * DATAWIDTH
-#define FC_MEM_BITS             MAX_FC_NUM_WORDS * DATAWIDTH
+#define DATAWIDTH 64
+#define CONV_MEM_BITS MAX_CONV_NUM_WORDS *DATAWIDTH
+#define FC_MEM_BITS MAX_FC_NUM_WORDS *DATAWIDTH
 
+#define MEM_CHANNELS 2
 
-#define MEM_CHANNELS            2
+#define INPUT_BITS 8
+#define ACTIVATION_BITS 2
+#define WEIGHTS_BITS 1
+#define THRESHOLDS_BITS 16 * 4
+#define MACC_BITS 16
 
-#define INPUT_BITS              8
-#define ACTIVATION_BITS         2
-#define WEIGHTS_BITS            1
-#define THRESHOLDS_BITS         16 * 4
-#define MACC_BITS               16
-
-#define BITS_PER_EXTMEMWORD     64
+#define BITS_PER_EXTMEMWORD 64
