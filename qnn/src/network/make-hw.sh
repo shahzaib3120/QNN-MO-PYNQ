@@ -136,6 +136,7 @@ VIVADO_OUT_DIR="$QNN_PATH/output/vivado/$TARGET_NAME"
 BITSTREAM_PATH="$QNN_PATH/output/bitstream"
 TARGET_BITSTREAM="$BITSTREAM_PATH/$NETWORK-$PLATFORM.bit"
 TARGET_TCL="$BITSTREAM_PATH/$NETWORK-$PLATFORM.tcl"
+TARGET_HWH="$BITSTREAM_PATH/$NETWORK-$PLATFORM.hwh"
 
 
 if [[ ("$MODE" == "b") || ("$MODE" == "a")  ]]; then
@@ -155,6 +156,7 @@ if [[ ("$MODE" == "b") || ("$MODE" == "a")  ]]; then
   vivado -mode batch -source $VIVADO_SCRIPT -tclargs $HLS_IP_REPO $TARGET_NAME $VIVADO_OUT_DIR $VIVADO_SCRIPT_DIR
   cp -f "$VIVADO_OUT_DIR/$TARGET_NAME.runs/impl_1/procsys_wrapper.bit" $TARGET_BITSTREAM
   cp -f "$VIVADO_OUT_DIR/procsys.tcl" $TARGET_TCL
+  cp -f "$VIVADO_OUT_DIR/$TARGET_NAME.srcs/sources_1/bd/procsys/hw_handoff/procsys.hwh" $TARGET_HWH
 
   # extract parts of the post-implementation reports
   cat "$VIVADO_OUT_DIR/$TARGET_NAME.runs/impl_1/procsys_wrapper_timing_summary_routed.rpt" | grep "| Design Timing Summary" -B 3 -A 10 > $REPORT_OUT_DIR/vivado.txt
