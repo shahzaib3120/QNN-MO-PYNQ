@@ -34,7 +34,7 @@ import numpy as np
 import cv2
 import cffi
 import math
-from pynq import Overlay, Xlnk
+from pynq import Overlay
 import subprocess
 import time
 

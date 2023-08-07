@@ -35,7 +35,7 @@ import cv2
 import cffi
 import math
 from ctypes import c_size_t
-from pynq import Overlay, Xlnk
+from pynq import Overlay
 
 if os.environ['BOARD'] == 'Ultra96':
 	PLATFORM="ultra96"
